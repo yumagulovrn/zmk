@@ -15,27 +15,10 @@
 #define RSE 2
 #define ADJ 3
 
+&lt { quick_tap_ms = <200>; };
+&mt { quick_tap_ms = <200>; };
+
 / {
-	behaviors {
-		mtb: behavior_mod_tap_balanced {
-			compatible = "zmk,behavior-hold-tap";
-			label = "MOD_TAP_BALANCED";
-			#binding-cells = <2>;
-			flavor = "balanced";
-			tapping-term-ms = <300>;
-			quick-tap-ms = <200>;
-			bindings = <&kp>, <&kp>;
-		};
-                ltb: behavior_layer_tap_balanced {
-			compatible = "zmk,behavior-hold-tap";
-			label = "LAYER_TAP_BALANCED";
-			#binding-cells = <2>;
-			flavor = "balanced";
-			tapping-term-ms = <300>;
-			quick-tap-ms = <200>;
-			bindings = <&mo>, <&kp>;
-		};
-	};
         keymap {
                 compatible = "zmk,keymap";
 
@@ -46,10 +29,10 @@
 // | ALT  / - |  Z  |  X  |  C  |  V  |  B  |   |  N  |  M  |  ,  |  .  |  /  | ALTGR / \ |
 //                        | RSE | SPC | LWR |   | LWR | SPC | RSE |
                         bindings = <
-   &mtb LWIN  RBKT  &kp Q &kp W &kp E &kp R &kp T   &kp Y &kp U  &kp I     &kp O   &kp P    &mtb RWIN  LBKT
-   &mtb LCTRL GRAVE &kp A &kp S &kp D &kp F &kp G   &kp H &kp J  &kp K     &kp L   &kp SEMI &mtb RCTRL SQT
-   &mtb LALT  MINUS &kp Z &kp X &kp C &kp V &kp B   &kp N &kp M  &kp COMMA &kp DOT &kp FSLH &mtb RALT  BSLH
-       &ltb RSE TAB &mtb LSHFT SPACE &ltb LWR RET   &ltb LWR ESC &mtb RSHFT BSPC &ltb RSE DEL
+   &mt LWIN  RBKT  &kp Q &kp W &kp E &kp R &kp T   &kp Y &kp U  &kp I     &kp O   &kp P    &mt RWIN  LBKT
+   &mt LCTRL GRAVE &kp A &kp S &kp D &kp F &kp G   &kp H &kp J  &kp K     &kp L   &kp SEMI &mt RCTRL SQT
+   &mt LALT  MINUS &kp Z &kp X &kp C &kp V &kp B   &kp N &kp M  &kp COMMA &kp DOT &kp FSLH &mt RALT  BSLH
+         &lt RSE TAB &mt LSHFT SPACE &lt LWR RET   &lt LWR ESC &mt RSHFT BSPC &lt RSE DEL
                         >;
                 };
                 lower_layer {
@@ -59,10 +42,10 @@
 // | ALT  / = |  1  |  2  |  3  |  4  |  5  |   |  6  |  7  |  8  |  9  |  0  | ALTGR / _ |
 //                        | ADJ |     |     |   |     |     | ADJ |
                         bindings = <
-   &mtb LWIN  F1    &kp F2   &kp F3 &kp F4   &kp F5   &kp F6      &kp F7    &kp F8   &kp F9   &kp F10  &kp F11  &mtb RWIN  F12
-   &mtb LCTRL PLUS  &kp EXCL &kp AT &kp HASH &kp DLLR &kp PRCNT   &kp CARET &kp AMPS &kp STAR &kp LPAR &kp RPAR &mtb RCTRL MINUS
-   &mtb LALT  EQUAL &kp N1   &kp N2 &kp N3   &kp N4   &kp N5      &kp N6    &kp N7   &kp N8   &kp N9   &kp N0   &mtb RALT  UNDER
-                                    &ltb ADJ TAB &trans &trans   &trans &trans &ltb ADJ DEL
+   &mt LWIN  F1    &kp F2   &kp F3 &kp F4   &kp F5   &kp F6      &kp F7    &kp F8   &kp F9   &kp F10  &kp F11  &mt RWIN  F12
+   &mt LCTRL PLUS  &kp EXCL &kp AT &kp HASH &kp DLLR &kp PRCNT   &kp CARET &kp AMPS &kp STAR &kp LPAR &kp RPAR &mt RCTRL MINUS
+   &mt LALT  EQUAL &kp N1   &kp N2 &kp N3   &kp N4   &kp N5      &kp N6    &kp N7   &kp N8   &kp N9   &kp N0   &mt RALT  UNDER
+                                     &lt ADJ TAB &trans &trans   &trans &trans &lt ADJ DEL
                         >;
                 };
 
@@ -74,9 +57,9 @@
 //                        |     |     | ADJ |   |  ADJ |      |      |
                         bindings = <
    &kp KP_NUM       &kp FSLH        &kp KP_N7 &kp KP_N8 &kp KP_N9 &kp KP_MINUS   &kp C_VOL_UP &kp HOME &kp PSCRN &kp PG_UP &kp SLCK        &kp CLCK
-   &mtb LCTRL EQUAL &kp KP_MULTIPLY &kp KP_N4 &kp KP_N5 &kp KP_N6 &kp KP_PLUS    &kp C_MUTE   &kp LEFT &kp UP    &kp RIGHT &kp INS         &mtb RCTRL K_MENU
+   &mt LCTRL EQUAL &kp KP_MULTIPLY &kp KP_N4 &kp KP_N5 &kp KP_N6 &kp KP_PLUS     &kp C_MUTE   &kp LEFT &kp UP    &kp RIGHT &kp INS         &mt RCTRL K_MENU
    &kp LALT         &kp KP_N0       &kp KP_N1 &kp KP_N2 &kp KP_N3 &kp KP_DOT     &kp C_VOL_DN &kp END  &kp DOWN  &kp PG_DN &kp PAUSE_BREAK &kp RALT
-                                                   &trans &trans &ltb ADJ RET   &ltb ADJ ESC &trans &trans
+                                                     &trans &trans &lt ADJ RET   &lt ADJ ESC &trans &trans
                         >;
                 };
                 adjust_layer {
@@ -89,7 +72,7 @@
    &reset      &rgb_ug RGB_EFF &rgb_ug RGB_HUI &rgb_ug RGB_SAI &rgb_ug RGB_BRI &rgb_ug RGB_SPI   &rgb_ug RGB_SPI &rgb_ug RGB_BRI &rgb_ug RGB_SAI &rgb_ug RGB_HUI &rgb_ug RGB_EFF &reset
    &bt BT_CLR  &bt BT_SEL 0    &bt BT_SEL 1    &bt BT_SEL 2    &bt BT_SEL 3    &bt BT_SEL 4      &bt BT_SEL 4    &bt BT_SEL 3    &bt BT_SEL 2    &bt BT_SEL 1    &bt BT_SEL 0    &bt BT_CLR
    &bootloader &rgb_ug RGB_EFR &rgb_ug RGB_HUD &rgb_ug RGB_SAD &rgb_ug RGB_BRD &rgb_ug RGB_SPD   &rgb_ug RGB_SPD &rgb_ug RGB_BRD &rgb_ug RGB_SAD &rgb_ug RGB_HUD &rgb_ug RGB_EFR &bootloader
-                                                                 &trans &ext_power EP_TOG &trans   &trans &ext_power EP_TOG &trans
+                                                               &trans &ext_power EP_TOG &trans   &trans &ext_power EP_TOG &trans
                         >;
                 };
         };
